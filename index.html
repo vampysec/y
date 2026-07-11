@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mejores Decks Duel Links</title>
+  <style>
+    :root {
+      --neon: #00ffcc;
+      --dark: #0a0a0a;
+      --card: #1f1f1f;
+    }
+    * { margin:0; padding:0; box-sizing:border-box; }
+    
+    body {
+      background: linear-gradient(135deg, #0a0a0a 0%, #1a0033 100%);
+      color: #ffffff;
+      font-family: 'Segoe UI', Arial, sans-serif;
+      line-height: 1.7;
+      min-height: 100vh;
+      background-attachment: fixed;
+    }
+
+    header {
+      background: rgba(10,10,10,0.95);
+      padding: 1.5rem 1rem;
+      text-align: center;
+      border-bottom: 4px solid var(--neon);
+      box-shadow: 0 0 25px var(--neon);
+    }
+    header h1 {
+      font-size: 2.3rem;
+      text-shadow: 0 0 15px var(--neon);
+    }
+
+    nav {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      padding: 1rem;
+      background: rgba(0,0,0,0.85);
+      flex-wrap: wrap;
+    }
+    nav button {
+      background: transparent;
+      color: var(--neon);
+      border: 2px solid var(--neon);
+      padding: 12px 28px;
+      font-size: 1.1rem;
+      cursor: pointer;
+      border-radius: 8px;
+      transition: all 0.3s;
+      min-width: 140px;
+    }
+    nav button:hover {
+      background: var(--neon);
+      color: #000;
+      box-shadow: 0 0 20px var(--neon);
+    }
+
+    .section {
+      display: none;
+      padding: 2rem 1rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .active { display: block; }
+
+    /* INICIO */
+    #inicio {
+      text-align: center;
+      font-size: 1.15rem;
+    }
+    #inicio p {
+      max-width: 800px;
+      margin: 1.5rem auto;
+      text-shadow: 0 0 8px rgba(0,0,0,0.8);
+    }
+
+    /* DECKS */
+    .deck-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.8rem;
+    }
+    .deck-card {
+      background: var(--card);
+      border: 3px solid var(--neon);
+      border-radius: 15px;
+      overflow: hidden;
+      transition: all 0.4s;
+      cursor: pointer;
+    }
+    .deck-card:hover {
+      transform: translateY(-10px) scale(1.03);
+      box-shadow: 0 0 30px var(--neon);
+    }
+    .deck-card img {
+      width: 100%;
+      height: 300px;
+      object-fit: cover;
+    }
+    .deck-info {
+      padding: 1.2rem;
+      text-align: center;
+    }
+    .deck-info h3 {
+      color: var(--neon);
+      margin-bottom: 0.6rem;
+      text-shadow: 0 0 10px var(--neon);
+    }
+
+    /* Modal */
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0,0,0,0.97);
+      z-index: 1000;
+      align-items: center;
+      justify-content: center;
+      padding: 1rem;
+    }
+    .modal-content {
+      max-width: 95%;
+      max-height: 90vh;
+      border: 4px solid var(--neon);
+      border-radius: 12px;
+      box-shadow: 0 0 40px var(--neon);
+    }
+
+    @media (max-width: 600px) {
+      header h1 { font-size: 1.9rem; }
+      .deck-grid { grid-template-columns: 1fr; }
+      .deck-card img { height: 250px; }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>🃏 MEJORES DECKS DUEL LINKS 🃏</h1>
+  </header>
+
+  <nav>
+    <button onclick="showSection('inicio')">🏠 Inicio</button>
+    <button onclick="showSection('decks')">🃏 Decks</button>
+  </nav>
+
+  <!-- INICIO -->
+  <div id="inicio" class="section active">
+    <h2>Bienvenido Duelista</h2>
+    <p>Yu-Gi-Oh! Duel Links es el juego móvil oficial donde puedes disfrutar de duelos rápidos y emocionantes con tus cartas favoritas.</p>
+    <p>En esta página encontrarás los mejores decks recomendados para subir de rango y divertirte.</p>
+  </div>
+
+  <!-- DECKS -->
+  <div id="decks" class="section">
+    <h2>Mejores Decks</h2>
+    <div class="deck-grid">
+
+      <!-- Ejemplo - Copia este bloque completo para agregar más decks -->
+      <div class="deck-card" onclick="showImage(this)">
+        <img src="https://via.placeholder.com/600x400/1a0033/00ffcc?text=Deck+Ejemplo" alt="Deck Nombre">
+        <div class="deck-info">
+          <h3>Nombre del Deck</h3>
+          <p>Descripción corta del deck. Cómo se juega, fortalezas principales y contra qué funciona bien.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Modal para ver imagen grande -->
+  <div id="modal" class="modal" onclick="this.style.display='none'">
+    <img id="modalImage" class="modal-content" onclick="event.stopImmediatePropagation()">
+  </div>
+
+  <script>
+    function showSection(section) {
+      document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+      document.getElementById(section).classList.add('active');
+    }
+
+    function showImage(card) {
+      const img = card.querySelector('img');
+      document.getElementById('modalImage').src = img.src;
+      document.getElementById('modal').style.display = 'flex';
+    }
+
+    document.addEventListener('keydown', e => {
+      if (e.key === "Escape") document.getElementById('modal').style.display = 'none';
+    });
+  </script>
+</body>
+</html>
